@@ -7,7 +7,6 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from utils import Trainer
 from vgg import vgg
-from model import MNISTModel
 
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch Slimming CIFAR training')
@@ -95,7 +94,7 @@ elif args.dataset == 'cifar100':
           batch_size = args.test_batch_size,shuffle=True,**kwargs
           )
 
-model = MNISTModel(margin=args.margin)
+model = vgg(margin=args.margin)
 optimizer = optim.SGD(model.parameters(),lr=args.lr,momentum=args.momentum,weight_decay=args.weight_decay)
 criterion = nn.CrossEntropyLoss()
 
